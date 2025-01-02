@@ -35,7 +35,7 @@ export class Service{
 
     async updatePost(slug,{title,content,featuredImage,status}){
         try {
-            await this.databases.updateDocument(
+            return await this.databases.updateDocument(
                 conf.databaseId,
                 conf.collectionId,
                 slug,
@@ -46,7 +46,6 @@ export class Service{
                     status,
                 }
             )
-            return true
         } catch (error) {
             console.log("Appwrite :: auth :: update Post :: error",error);
             return false

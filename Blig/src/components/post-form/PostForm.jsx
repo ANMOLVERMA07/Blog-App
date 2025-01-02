@@ -71,7 +71,7 @@ function PostForm({ post }) {
   useEffect(() => {
     const subscription = watch((value,{name}) => {
         if(name === 'title'){
-            setValue('slug',setValue(slugTransform(value.title,{shouldValidate : true})));
+           setValue("slug",slugTransform(value.title),{shouldValidate : true});
         }
     })
 
