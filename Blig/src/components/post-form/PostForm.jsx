@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Select, RTE } from "../index";
 import service from "../../appwrite/config";
@@ -23,13 +23,13 @@ function PostForm({ post }) {
     // Check if there is an existing post to update
     if (post) {
       // Upload the new image if it exists
-    const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+    const file = data.image[0] ? await service.uploadFile(data.image[0]) : null;
       // If a new file was uploaded, delete the old featured image
        if (file) {
-          appwriteService.deleteFile(post.featuredImage);
+          await service.deleteFile(post.featuredImage);
        }
       // Update the post with the new data and the new file ID (if available)
-    const dbPost = await appwriteService.updatePost(post.$id, {
+    const dbPost = await service.updatePost(post.$id, {
         ...data,
         featuredImage: file ? file.$id : undefined,
       });
@@ -39,13 +39,13 @@ function PostForm({ post }) {
       }
     } else {
       // If no existing post, upload the new image
-      const file = data.image[0] ? await service.uploadFile(data.image[0]) : null;
+      const file = await service.uploadFile(data.image[0]);
       if (file) {
         // Add the file ID to the data
         const fileId = file.$id;
         data.featuredImage = fileId;
         // Create a new post with the updated data and user ID
-        const dbPost = await appwriteService.createPost({
+        const dbPost = await service.createPost({
           ...data,
           userId: userData.$id,
         });
@@ -76,9 +76,7 @@ function PostForm({ post }) {
     })
 
 
-    return () => {
-        subscription.unsubscribe()
-    }
+    return () => subscription.unsubscribe()
   },[watch,slugTransform,setValue])
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
@@ -123,8 +121,9 @@ function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button children={post ? "Update" : "Submit"} type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full" />
-                  
+                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                    {post ? "Update" : "Submit"}
+                </Button>
             </div>
         </form>
   )

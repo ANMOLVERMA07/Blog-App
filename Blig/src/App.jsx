@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import {useSelector,useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import authService from './appwrite/auth'
-import {useNavigate} from 'react-router-dom'
 import { login,logout} from './store/authSlice'
 import { Header,Footer} from './components/index'
 import { Outlet } from 'react-router-dom'
@@ -28,7 +27,7 @@ function App() {
       <div className='w-full block'>
               <Header/>
                 <main>
-                 TODO: <Outlet/>
+              <Outlet/>
                 </main>
               <Footer/>
       </div>
