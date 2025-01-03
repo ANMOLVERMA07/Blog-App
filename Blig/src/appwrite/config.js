@@ -128,15 +128,11 @@ export class Service{
     }
 
     getFilePreview(fileId){
-        try {
-            this.bucket.getFilePreview(
+           return this.bucket.getFilePreview(
                 conf.bucketId,
                 fileId,
             )
-        } catch (error) {
-            console.log("Appwrite :: config :: Get File Preview :: error",error);
-            return null
-        }
+         
     }
 }
 

@@ -36,6 +36,7 @@ function PostForm({ post }) {
       // If the post was successfully updated, navigate to the updated post's page
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
+        // navigate("/all-posts")
       }
     } else {
       // If no existing post, upload the new image
@@ -56,6 +57,7 @@ function PostForm({ post }) {
         // If the post was successfully created, navigate to the new post's page
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
+          // navigate("/all-posts");
         }else{
           console.log("no db post")
         }

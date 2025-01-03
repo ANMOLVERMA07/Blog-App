@@ -4,8 +4,8 @@ import service from '../appwrite/config'
 
 export default function AllPosts() {
     const [posts,setPosts] = useState([]);
-    useEffect(() => {
-        service.getAllPosts([])
+   useEffect(() => {
+       service.getAllPosts([])
                .then((posts) => {
                 if(posts){
                     setPosts(posts.documents)
@@ -18,7 +18,7 @@ export default function AllPosts() {
             <div className='flex flex-wrap'>
                 {posts.map((post) => (
                     <div key={post.$id} className='p-2 w-1/4'>
-                        <PostCard post={post}/>
+                        <PostCard {...post}/>
                     </div>
                 ))}
             </div>

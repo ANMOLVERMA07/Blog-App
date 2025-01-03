@@ -20,7 +20,7 @@ function EditPost() {
             navigate("/")
         }
     },[slug,navigate])
-  return posts? (
+  return post? (
     <div className='py-8'>
         <Container>
             <PostForm post={post}/>

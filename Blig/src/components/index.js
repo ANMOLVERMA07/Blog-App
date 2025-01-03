@@ -12,6 +12,7 @@ import Signup from './Signup'
 import AuthLayout from './AuthLayout'
 import RTE from "./RTE";
 import PostForm from './post-form/PostForm'
+import ErrorBoundary from "./ErrorBoundary";
 
 export {
     Header,
@@ -27,5 +28,6 @@ export {
     Signup,
     AuthLayout,
     RTE,
-    PostForm
+    PostForm,
+    ErrorBoundary
 } 

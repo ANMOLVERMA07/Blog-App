@@ -9,11 +9,11 @@ function PostCard({
     featuredImage,
 }) {
   return (
-    <Link to={`/blog/${$id}`}>
-        <div className='w-full bg-gray-100 rounded-xl p-4'>
-            <div className='w-full justify-center mb-4'>
+    <Link to={`/post/${$id}`}>
+        <div className='w-full bg-gray-700 rounded-xl p-3'>
+            <div className='w-full justify-center mb-2'>
             <img src={service.getFilePreview(featuredImage)} alt={title} className='rounded-xl'/>
-            <h2 className='text-xl font-bold'>{title}</h2>
+            <h2 className='mt-2 text-white text-center text-xl font-bold'>{title}</h2>
             </div>
         </div>
     </Link>
