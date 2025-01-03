@@ -10,7 +10,7 @@ export default function RTE({name,control,label,defaultValue=''}) {
       <Controller 
       name={name || "content"}
       control={control}
-      render={({field : {onChange}}) => (
+      render={({field : {onChange,value}}) => (
         <Editor 
         apiKey='nbzvbqh9iia3knqfepmbbf190a71dxhhkn42spoogfvckdgt'
         initialValue={defaultValue}
@@ -44,8 +44,8 @@ export default function RTE({name,control,label,defaultValue=''}) {
             "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
             content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
         }}
-        onEditorChange={onChange}
-        
+        onEditorChange={(content) => onChange(content)} 
+        value={value}
         />
       )}      
       />

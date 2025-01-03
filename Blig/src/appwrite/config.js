@@ -16,7 +16,7 @@ export class Service{
 
     async createPost({title,content,featuredImage,status,slug,userId}){
         try {
-            await this.databases.createDocument(
+            return await this.databases.createDocument(
                 conf.databaseId,
                 conf.collectionId,
                 slug,
@@ -47,7 +47,7 @@ export class Service{
                 }
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: update Post :: error",error);
+            console.log("Appwrite :: config :: update Post :: error",error);
             return false
         }
     }
@@ -60,7 +60,7 @@ export class Service{
                 slug
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: get Post :: error",error);
+            console.log("Appwrite :: config :: get Post :: error",error);
         }
     }
 
@@ -72,7 +72,7 @@ export class Service{
                 slug,
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: delete Post :: error",error);
+            console.log("Appwrite :: config :: delete Post :: error",error);
             return false
         }
     }
@@ -85,7 +85,7 @@ export class Service{
                 queries,
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: get All Posts :: error",error);
+            console.log("Appwrite :: config :: get All Posts :: error",error);
         }
     }
 
@@ -94,13 +94,13 @@ export class Service{
 
     async uploadFile(file){
         try {
-            await this.bucket.createFile(
+            return await this.bucket.createFile(
                 conf.bucketId,
                 ID.unique(),
                 file,
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: upload File :: error",error);
+            console.log("Appwrite :: config :: upload File :: error",error);
         }
     }
 
@@ -111,7 +111,7 @@ export class Service{
                 fileId,
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: Update File :: error",error);
+            console.log("Appwrite :: config :: Update File :: error",error);
         }
     }
 
@@ -122,19 +122,19 @@ export class Service{
                 fileId,
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: delete File :: error",error);
+            console.log("Appwrite :: config :: delete File :: error",error);
             return false;
         }
     }
 
-    async getFilePreview(fileId){
+    getFilePreview(fileId){
         try {
-            return await this.bucket.getFilePreview(
+            this.bucket.getFilePreview(
                 conf.bucketId,
                 fileId,
             )
         } catch (error) {
-            console.log("Appwrite :: auth :: Get File Preview :: error",error);
+            console.log("Appwrite :: config :: Get File Preview :: error",error);
             return null
         }
     }

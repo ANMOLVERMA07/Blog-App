@@ -40,18 +40,24 @@ function PostForm({ post }) {
     } else {
       // If no existing post, upload the new image
       const file = await service.uploadFile(data.image[0]);
+      console.log(file);
+      
       if (file) {
         // Add the file ID to the data
         const fileId = file.$id;
+        console.log(fileId)
         data.featuredImage = fileId;
         // Create a new post with the updated data and user ID
         const dbPost = await service.createPost({
           ...data,
           userId: userData.$id,
         });
+        console.log(dbPost)
         // If the post was successfully created, navigate to the new post's page
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
+        }else{
+          console.log("no db post")
         }
       }
     }
@@ -62,7 +68,7 @@ function PostForm({ post }) {
             return value
                    .trim()
                    .toLowerCase()
-                   .replace(/^[a-zA-Z\d\s]+/g,'-')
+                   .replace(/[^a-zA-Z\d\s]+/g,'-')
                    .replace(/\s/g,'-')
         }
         return ""
