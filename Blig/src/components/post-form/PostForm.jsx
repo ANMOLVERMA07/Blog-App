@@ -92,13 +92,13 @@ function PostForm({ post }) {
                 <Input
                     label="Title :"
                     placeholder="Title"
-                    className="mb-4"
+                    className="mb-4 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     {...register("title", { required: true })}
                 />
                 <Input
                     label="Slug :"
                     placeholder="Slug"
-                    className="mb-4"
+                    className="mb-4 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
@@ -129,7 +129,7 @@ function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className=" w-full transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-0 hover:scale-105 hover:bg-indigo-500 duration-300">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>

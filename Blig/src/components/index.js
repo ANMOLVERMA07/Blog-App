@@ -29,5 +29,5 @@ export {
     AuthLayout,
     RTE,
     PostForm,
-    ErrorBoundary
+    ErrorBoundary,
 } 

@@ -35,7 +35,11 @@ export default function Post() {
     return post ? (
         <div className="py-8">
             <Container>
+            <div className="w-full mt-8 mb-10">
+                    <h1 className="text-4xl font-bold text-center capitalize">{post.title}</h1>
+                </div>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                    
                     <img
                         src={service.getFilePreview(post.featuredImage)}
                         alt={post.title}
@@ -55,9 +59,7 @@ export default function Post() {
                         </div>
                     )}
                 </div>
-                <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
-                </div>
+                
                 <div className="browser-css">
                     {parse(post.content)}
                     </div>
